@@ -1,0 +1,68 @@
+\documentclass{aplreport}
+
+% ====================================================================
+% Document parameters  -----------------------------------------------
+% ====================================================================
+
+\title{Title}
+\subtitle{Subtitle}
+\shorttitle{\title}
+\docnumber{20XX-XX}
+\author{Author}
+\projectleader{\author}{}{}{}{} %name street address phone email
+\titlepagefigure{} %path to title figure
+\titlepagecaption{Titlepagecaption}
+\titlepagecaptionfigure{} %path to caption figure
+
+\proofreader{Proofreader}
+\proofdate{20XX-XX-XX}
+\dnr{XX}
+\version{XX}
+
+\receivercompany{Name}{}{}{}{} %name street address phone email
+\receiverperson{Name}{}{}{}{} %name street address phone email
+\booltrue{secret}
+\keywords{Keywords}
+\misc{Misc}
+
+
+
+% ====================================================================
+% Document content ---------------------------------------------------
+% ====================================================================
+\begin{document}
+
+% ====================================================================
+\maketitlepages
+
+% ====================================================================
+\section{Sammanfattning}
+\label{sec:summary}
+
+% ====================================================================
+\section{Inledning}
+\label{sec:introduction}
+
+% ====================================================================
+\section{Metodik}
+\label{sec:method}
+
+% ====================================================================
+\section{Resultat}
+\label{sec:results}
+
+% ====================================================================
+\section{Diskussion}
+\label{sec:diskussion}
+
+% ====================================================================
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+% ====================================================================
+\makeappendix
+
+\section{Appendix 1}
+\label{sec:appendix1}
+
+\end{document}
