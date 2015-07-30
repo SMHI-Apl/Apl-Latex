@@ -83,12 +83,12 @@
 \dnr{}
 \version{}
 \docnumber{}
-\projectleader{\@author}{}{}{}{}
+\projectleader{}{}{}{}{}
 \receivercompany{}{}{}{}{}
 \receiverperson{}{}{}{}{}
 \keywords{}
 \misc{}
-\shorttitle{\@title}
+\shorttitle{}
 
 \newcommand\makemetadata{
   %\hypersetup{pdftitle=\@title, pdfauthor=\@author}
@@ -169,9 +169,9 @@
     \begin{tabular}{p{0.5\textwidth} p{0.5\textwidth} }
       \hline
       \scriptsize{Uppdragstagare} & \scriptsize{Projektansvarig} \\
-      SMHI & \@projectleadername\\
-      601 76 Norrköping & \ifdefempty{\@projectleaderphone}{~}{\@projectleaderphone}\\
-      & \@projectleaderemail\\
+      SMHI & \ifdefempty{\@projectleadername}{ }{\@projectleadername}\\
+      601 76 Norrköping & \ifdefempty{\@projectleaderphone}{ }{\@projectleaderphone}\\
+      & \ifdefempty{\@projectleaderemail}{ }{\@projectleaderemail}\\
       \hline
       \scriptsize{Uppdragsgivare} & \scriptsize{Kontaktperson} \\
       \parbox{0.45\textwidth}{
