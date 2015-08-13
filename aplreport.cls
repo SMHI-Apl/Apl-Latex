@@ -1,12 +1,23 @@
-% identification
+% ====================================================================
+% Apl report class  --------------------------------------------------
+% ====================================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Identification
+%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{aplreport}[2015/07/22]
-% initial code
-% declaration of options
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Declaration and execution of options
+%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-% execution of options
 \ProcessOptions \relax
-% package loading
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Package loading
+%%%%%%%%%%%%%%%%%%%%%%%
 \LoadClass[a4paper,twoside,10pt]{article}
 \RequirePackage[hyphens]{url}
 \RequirePackage[usenames]{color}
@@ -33,10 +44,15 @@
 \RequirePackage{setspace}
 \RequirePackage{natbib}
 
-% main code
+%%%%%%%%%%%%%%%%%%%%%%%
+% Style options
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set section and subsection formats
 \titleformat*{\section}{\Large\bf\sffamily}
 \titleformat*{\subsection}{\large\bf\sffamily}
 
+% Set header formats
 \fancyhead[LE,RO]{\includegraphics[height=13pt]{base_figures/SMHI_logo.pdf}}
 \fancyhead[LO,RE]{\textsc{\leftmark}}
 \fancyfoot[LE,RO]{\thepage}
@@ -44,8 +60,16 @@
 \fancyfoot[LO,RE]{Nr \@docnumber{} -- \@shorttitle}
 \pagestyle{fancy}
 
+% Set paragraph indentation
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}
 
-%Commands
+% Create new sansserif font environment
+\newenvironment{sansserif}{\fontfamily{ppl}\selectfont}{\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Document parameters
+%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \def\subtitle#1{\def\@subtitle{#1}}
 \def\titlepagecaption#1{\def\@titlepagecaption{#1}}
@@ -68,16 +92,11 @@
 \def\misc#1{\def\@misc{#1}}
 \def\shorttitle#1{\def\@shorttitle{#1}}
 
-\def\mkn{\cellcolor{BurntOrange}}
-\def\out{\cellcolor{Apricot}}
-\def\nut{\cellcolor{Goldenrod}}
-
-\newcommand{\mum}{$\muup$m}
-\newcommand{\mugm}{$\muup$g/m$^3$}
-
 \newbool{secret}
-\newenvironment{sansserif}{\fontfamily{ppl}\selectfont}{\par}
 
+%%%%%%%%%%%%%%%%%%%%%%%
+% Default documenter parameter values
+%%%%%%%%%%%%%%%%%%%%%%%
 \author{}
 \title{}
 \shorttitle{}
@@ -96,6 +115,41 @@
 \misc{}
 \shorttitle{\@title}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Air quality macros
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mum}{$\muup$m}
+\newcommand{\mugm}{$\muup$g/m$^3$}
+
+\def\mkn{\cellcolor{BurntOrange}}
+\def\out{\cellcolor{Apricot}}
+\def\nut{\cellcolor{Goldenrod}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Document commands
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Command for starting a new page on an even side
+\newcommand{\newevenside}{
+  \ifnumodd{\value{page}}{\newpage}{
+    \clearpage
+    \phantom{placeholder} % doesn't appear on page
+    \thispagestyle{empty} % if want no header/footer
+    \newpage
+  }
+}
+
+% Command for linebreaking in a table cell
+\newcommand{\linebreakcell}[3][c]{%
+  \begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Document default pages
+%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\makemetadata{
   %\hypersetup{pdftitle=\@title, pdfauthor=\@author}
   \pdfinfo{
@@ -104,9 +158,6 @@
     /Keywords   (\@keywords)
   }
 }
-
-\setlength\parindent{0pt}
-\setlength{\parskip}{\baselineskip}
 
 \renewcommand\maketitle{
   \begin{titlepage}
@@ -226,12 +277,6 @@
   \setcounter{page}{1}
 }
 
-\newcommand\makeappendix{\par
-  \clearpage
-  \section*{Appendix}
-  \appendix
-} 
-
 \newcommand{\maketitlepages}{
   \makemetadata
   \maketitle
@@ -240,17 +285,11 @@
   \toc
 }
 
-\newcommand{\newevenside}{
-  \ifnumodd{\value{page}}{\newpage}{
-    \clearpage
-    \phantom{placeholder} % doesn't appear on page
-    \thispagestyle{empty} % if want no header/footer
-    \newpage
-  }
-}
-
-\newcommand{\linebreakcell}[3][c]{%
-  \begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+\newcommand\makeappendix{\par
+  \clearpage
+  \section*{Appendix}
+  \appendix
+} 
 
 \AtEndDocument{
   \clearpage
