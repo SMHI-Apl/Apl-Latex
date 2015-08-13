@@ -4,26 +4,30 @@
 % Document parameters  -----------------------------------------------
 % ====================================================================
 
+\makeatletter
 \title{Title}
-\subtitle{Subtitle}
-\shorttitle{\title}
+\subtitle{}
+\shorttitle{\@title}
 \docnumber{20XX-XX}
 \author{Author}
-\projectleader{}{}{}{}{} %name street address phone email
-\titlepagefigure{} %path to title figure
-\titlepagecaption{Titlepagecaption}
+\projectleader{\@author}{}{}{}{} %name street address phone email
+\titlepagefigure{base_figures/placeholder.png} %path to title figure
+\titlepagecaption{Titlepage caption.}
 \titlepagecaptionfigure{} %path to caption figure
-
 \proofreader{Proofreader}
 \proofdate{20XX-XX-XX}
-\dnr{XX}
-\version{XX}
-
+\dnr{20XX/XXXX/XX}
+\version{0.1}
 \receivercompany{Name}{}{}{}{} %name street address phone email
 \receiverperson{Name}{}{}{}{} %name street address phone email
 \booltrue{secret}
 \keywords{Keywords}
 \misc{Misc}
+\makeatother
+
+% ====================================================================
+% Document macros  ---------------------------------------------------
+% ====================================================================
 
 
 
@@ -35,25 +39,57 @@
 % ====================================================================
 \maketitlepages
 
+% The title pages can also be made individually with
+%% \makemetadata
+%% \maketitle
+%% \titlepageback
+%% \detailspage
+%% \toc
+
+
 % ====================================================================
 \section{Sammanfattning}
 \label{sec:summary}
+
+Sammanfattningstext.
 
 % ====================================================================
 \section{Inledning}
 \label{sec:introduction}
 
+Inledningstext.
+
 % ====================================================================
 \section{Metodik}
 \label{sec:method}
+
+Metodiktext med exempelekvation som beskriver de Broglie-våglängden för en partikel som:
+%
+\begin{equation}
+  \lambda = \frac{h}{p}~,
+  \label{eq:wavelength}
+\end{equation}
+%
+där $h$ är Plancks konstant och $p$ är partikelns rörelsemängd.
 
 % ====================================================================
 \section{Resultat}
 \label{sec:results}
 
+Resultattext med en exempelfigur som kan refereras till som figur~\ref{fig:placeholderfigure}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[height=4.0cm]{base_figures/placeholder.png}
+  \caption{Text om exempelfiguren.}
+  \label{fig:placeholderfigure}
+\end{figure}
+
 % ====================================================================
 \section{Diskussion}
 \label{sec:diskussion}
+
+Diskussionstext.
 
 % ====================================================================
 \bibliographystyle{plainnat}

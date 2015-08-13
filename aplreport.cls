@@ -10,7 +10,7 @@
 \LoadClass[a4paper,twoside,10pt]{article}
 \RequirePackage[hyphens]{url}
 \RequirePackage[usenames]{color}
-\RequirePackage[colorlinks,linkcolor=black]{hyperref}
+\RequirePackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=red]{hyperref}
 \RequirePackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \RequirePackage[swedish]{babel}
@@ -31,7 +31,7 @@
 \RequirePackage[font=it,labelfont={it,bf}]{caption}
 \RequirePackage[pdftex]{graphicx}
 \RequirePackage{setspace}
-\RequirePackage[numbers]{natbib}
+\RequirePackage{natbib}
 
 % main code
 \titleformat*{\section}{\Large\bf\sffamily}
@@ -68,14 +68,20 @@
 \def\misc#1{\def\@misc{#1}}
 \def\shorttitle#1{\def\@shorttitle{#1}}
 
+\def\mkn{\cellcolor{BurntOrange}}
+\def\out{\cellcolor{Apricot}}
+\def\nut{\cellcolor{Goldenrod}}
+
+\newcommand{\mum}{$\muup$m}
+\newcommand{\mugm}{$\muup$g/m$^3$}
+
 \newbool{secret}
 \newenvironment{sansserif}{\fontfamily{ppl}\selectfont}{\par}
 
-\title{}
 \author{}
-\subtitle{}
+\title{}
 \shorttitle{}
-\titlepagefigure{}
+\subtitle{}
 \titlepagecaption{}
 \titlepagecaptionfigure{}
 \proofdate{}
@@ -83,12 +89,12 @@
 \dnr{}
 \version{}
 \docnumber{}
-\projectleader{}{}{}{}{}
+\projectleader{\@author}{}{}{}{}
 \receivercompany{}{}{}{}{}
 \receiverperson{}{}{}{}{}
 \keywords{}
 \misc{}
-\shorttitle{}
+\shorttitle{\@title}
 
 \newcommand\makemetadata{
   %\hypersetup{pdftitle=\@title, pdfauthor=\@author}
@@ -98,6 +104,9 @@
     /Keywords   (\@keywords)
   }
 }
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}
 
 \renewcommand\maketitle{
   \begin{titlepage}
@@ -114,13 +123,13 @@
       \ifdefempty{\@subtitle}{\\[0.8cm] ~}{\\[0.3cm] \LARGE\bf{\sffamily\@subtitle}}\\[2cm]
     \end{flushleft}
 
-    \ifdefempty{\@titlepagefigure}{}{    
-      \begin{center}
-        \fbox{
-          \includegraphics[height=8.0cm]{\@titlepagefigure}
+  \ifdefempty{\@titlepagefigure}{}{
+    \begin{center}
+      \fbox{
+        \includegraphics[height=8.0cm]{\@titlepagefigure}
 	}
-      \end{center}
-    }
+    \end{center}
+  }
   \end{titlepage}
 }
 
@@ -131,8 +140,7 @@
   \ifdefempty{\@titlepagecaptionfigure}{}{
     \\
     \\
-    \includegraphics[height=3cm]{\@titlepagecaptionfigure}
-  }
+    \includegraphics[height=3cm]{\@titlepagecaptionfigure}}
   \vspace*{\fill}
   \cleardoublepage
 }
@@ -147,7 +155,7 @@
   \onehalfspacing
   \begin{center}
     \sffamily
-    \begin{tabularx}{\textwidth}{p{6cm} p{6cm} l l}
+    \begin{tabularx}{\textwidth}{p{4.9cm} p{4.9cm} l l}
       Författare: & Mottagare: & &\\
       \textbf{\@author} & \textbf{\@receivercompanyname} & &\\
       Granskningsdatum: & Granskare: & Dnr: & Version\\
@@ -240,6 +248,9 @@
     \newpage
   }
 }
+
+\newcommand{\linebreakcell}[3][c]{%
+  \begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
 
 \AtEndDocument{
   \clearpage
