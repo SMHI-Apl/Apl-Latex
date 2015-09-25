@@ -1,2 +1,2 @@
 # Apl-Latex
-Latex classes and templates for report writing
+Moved to Gitlab https://gitlab.smhi.se/apl/latex_report
